@@ -66,12 +66,13 @@ window.getQsWithToken = () => {
 
 const Widget = props => {
   const [width, setWidth] = React.useState(500);
-  const [height, setHeight] = React.useState(160);
-  const [fontSize, setFontSize] = React.useState(18.5);
+  const [height, setHeight] = React.useState(100);
+  const [fontSize, setFontSize] = React.useState(14);
 
   const classes = useStyles();
 
-  const url = `${apiEndpoint}/widget/png/${width}/${height}/${fontSize}${window.getQsWithToken()}`;
+  const origin = apiEndpoint || window.location.origin;
+  const url = `${origin}/widget/png/${width}/${height}/${fontSize}${window.getQsWithToken()}`;
 
   return (
     <Grid
