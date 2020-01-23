@@ -345,10 +345,6 @@ const App = props => {
     }
   );
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
-
   return (
     <div className={classes.root}>
       <Router>
@@ -363,7 +359,9 @@ const App = props => {
             />
           </Toolbar>
         </AppBar>
-        {isLoaded ? (
+        {error ? (
+          <Typography variant="h6">{error.message}</Typography>
+        ) : isLoaded ? (
           <Switch>
             <Route path="/widget">
               <Widget />
