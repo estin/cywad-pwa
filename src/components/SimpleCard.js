@@ -36,15 +36,11 @@ const classes = {
   },
 };
 
-const formatDatetime = (str, noSeconds) => {
+const formatDatetime = str => {
   const value = new Date(str);
   const today = new Date().toISOString().slice(0, 10);
   if (today === value.toISOString().slice(0, 10)) {
-    let time = value.toLocaleTimeString();
-    if (noSeconds) {
-      time = time.slice(0, 5);
-    }
-    return time;
+    return value.toLocaleTimeString();
   }
   return value.toLocaleString();
 };
@@ -127,7 +123,7 @@ class SimpleCard extends React.Component {
           ))}
           {item.scheduled && (
             <Typography className={classes.status} color="textSecondary">
-              scheduled at {formatDatetime(item.scheduled, true)}
+              scheduled at {formatDatetime(item.scheduled).slice(0, -3)}
             </Typography>
           )}
         </CardContent>
